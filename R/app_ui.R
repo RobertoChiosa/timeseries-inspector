@@ -9,8 +9,11 @@ app_ui <- function(request) {
     # Leave this function for adding external resources
     golem_add_external_resources(),
     # Your application UI logic 
-    fluidPage(
-      h1("TSinspector")
+    sidebarPanel(
+      h3("TS Inspector"),
+    ),
+    mainPanel(
+      
     )
   )
 }
@@ -33,7 +36,7 @@ golem_add_external_resources <- function(){
     favicon(),
     bundle_resources(
       path = app_sys('app/www'),
-      app_title = 'TSinspector'
+      app_title = 'Time Series Inspector'
     )
     # Add here other external resources
     # for example, you can add shinyalert::useShinyalert() 
