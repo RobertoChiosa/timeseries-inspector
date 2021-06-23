@@ -1,6 +1,6 @@
 ## code to prepare `my_dataset` dataset goes here
 
-load("./data-raw/data_long.RData")
+load("./data-raw/data_small.RData")
 
 data <- df_univariate %>%
   dplyr::mutate(timestamp = CET,

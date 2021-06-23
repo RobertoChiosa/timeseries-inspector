@@ -102,7 +102,10 @@ mod_visualizer_server <- function(id){
         ) %>%
         # EXPORT
         highcharter::hc_exporting(
-          enabled=T,
+          enabled = T,
+          sourceWidth = 1000,
+          sourceHeight = 500,
+          scale = 1.5, 
           buttons=list(
             contextButton = list(
               align = 'right',
