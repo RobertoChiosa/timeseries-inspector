@@ -17,9 +17,12 @@ knitr::opts_chunk$set(
 
 <!-- badges: start -->
 [![Lifecycle: experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental)
+[![Generic badge](https://img.shields.io/badge/Version-v0.1-<COLOR>.svg)](https://shields.io/)
 <!-- badges: end -->
 
 The goal of  is to provide an easy interface to explore timeseries. The inspector tool is embedded in the `TSinspector` package that can be downloaded and installed locally or accessible online on shinyapps.io.
+
+![](man/figures/screen.png)
 
 ## Installation
 
@@ -30,13 +33,14 @@ You can install the development version from [GitHub](https://github.com/) with:
 devtools::install_github("RobertoChiosa/timeseries-inspector")
 ```
 
-## Example
+## Usage
 
 This is a basic example which shows you how to solve a common problem:
 
-```{r example}
+```{r usage}
 library(TSinspector)
-## basic example code
+# TSinspector::run_app()
 ```
+
 
 
