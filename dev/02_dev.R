@@ -20,6 +20,9 @@ usethis::use_package( "dplyr" )
 usethis::use_package( "magrittr" )
 usethis::use_package( "xts" )
 usethis::use_package( "colourpicker" )
+usethis::use_package( "shinycssloaders" )
+
+
 
 ## Add modules ----
 ## Create a module infrastructure in R/

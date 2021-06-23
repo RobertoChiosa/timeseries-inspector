@@ -7,13 +7,18 @@
 #' @noRd 
 #' @import shiny highcharter magrittr dplyr
 #' @importFrom colourpicker colourInput
+#' @importFrom shinycssloaders withSpinner
 
 mod_visualizer_ui <- function(id){
   ns <- NS(id)
   tagList(
     
     fluidRow( style = 'padding:20px',
-              highchartOutput(ns("plot"), height = "500px"),
+              shinycssloaders::withSpinner(
+                highchartOutput(ns("plot"), height = "500px"),
+                type = 7, color = "#158cba", size = 1),
+              
+             
               column(width = 2,
                      actionButton(ns("upload"), "Upload .csv", icon = icon("upload"), class = "btn-success", width = "100%")
               ),
@@ -40,8 +45,8 @@ mod_visualizer_ui <- function(id){
         column(width = 4,
                textInput(ns("title"), label = NULL, placeholder = "Title.."),
                textInput(ns("subtitle"), label = NULL, placeholder = "Subtitle.."),
-               textInput(ns("credits"), label = NULL, placeholder = "Credits..."),
-               textInput(ns("credits_href"), label = NULL, placeholder = "Credits href...")
+               textInput(ns("credits"), label = NULL, placeholder = "Credits ..."),
+               textInput(ns("credits_href"), label = NULL, placeholder = "Credits link https://www...")
                
         )
       )
@@ -67,6 +72,8 @@ mod_visualizer_server <- function(id){
     
     
     output$plot <- renderHighchart({
+      
+     
       
       highcharter::hchart(
         data, 
@@ -171,7 +178,7 @@ mod_visualizer_server <- function(id){
           )
         ) 
       
-      
+    
     })
     
   })
@@ -183,17 +190,17 @@ mod_visualizer_server <- function(id){
 ## To be copied in the server
 # mod_visualizer_server("visualizer_ui_1")
 
-library(shiny)
-library(highcharter)
-library(dplyr)
-library(magrittr)
-
-ui <- fluidPage(
-  mod_visualizer_ui("visualizer_ui_1")
-)
-
-server <- function(input, output, session) {
-  mod_visualizer_server("visualizer_ui_1")
-}
-
-shinyApp(ui, server)
+# library(shiny)
+# library(highcharter)
+# library(dplyr)
+# library(magrittr)
+# 
+# ui <- fluidPage(
+#   mod_visualizer_ui("visualizer_ui_1")
+# )
+# 
+# server <- function(input, output, session) {
+#   mod_visualizer_server("visualizer_ui_1")
+# }
+# 
+# shinyApp(ui, server)

@@ -17,6 +17,8 @@ Imports:
     magrittr,
     quantmod,
     shiny (>= 1.6.0),
+    shinycssloaders,
+    waiter,
     xts
 Encoding: UTF-8
 LazyData: true
