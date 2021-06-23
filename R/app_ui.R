@@ -6,7 +6,7 @@
 #' @noRd
 app_ui <- function(request) {
   tagList(
-    
+
     # Leave this function for adding external resources
     golem_add_external_resources(),
     
@@ -35,12 +35,13 @@ golem_add_external_resources <- function(){
     'www', app_sys('app/www')
   )
   
+
   tags$head(
     favicon(),
     bundle_resources(
       path = app_sys('app/www'),
       app_title = 'Time Series Inspector'
-    )
+    ),
     # Add here other external resources
     # for example, you can add shinyalert::useShinyalert() 
   )

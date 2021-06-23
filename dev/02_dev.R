@@ -19,6 +19,7 @@ usethis::use_package( "highcharter" )
 usethis::use_package( "dplyr" )
 usethis::use_package( "magrittr" )
 usethis::use_package( "xts" )
+usethis::use_package( "colourpicker" )
 
 ## Add modules ----
 ## Create a module infrastructure in R/

@@ -6,6 +6,7 @@ Description: Provides an easy UI to inspect timeseries.
 License: MIT + file LICENSE
 Imports: 
     attempt,
+    colourpicker,
     config (>= 0.3.1),
     dplyr,
     DT,
