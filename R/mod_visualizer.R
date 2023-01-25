@@ -55,10 +55,11 @@ mod_visualizer_ui <- function(id){
 }
 
 #' visualizer Server Functions
-#'
 #' @noRd 
 mod_visualizer_server <- function(id){
   moduleServer( id, function(input, output, session){
+    
+
     ns <- session$ns
     
     xlabel       <- eventReactive(input$refresh, { input$xlabel },  ignoreNULL = F)

@@ -6,17 +6,12 @@
 #' @noRd
 app_ui <- function(request) {
   tagList(
-
+    
     # Leave this function for adding external resources
     golem_add_external_resources(),
     
-    fluidPage(
-      mod_visualizer_ui("visualizer_ui_1")
-    )
-    
-    
-    
     # Your application UI logic 
+    fluidPage(mod_visualizer_ui("visualizer_ui_1"))
     
   )
 }
@@ -31,11 +26,8 @@ app_ui <- function(request) {
 #' @noRd
 golem_add_external_resources <- function(){
   
-  add_resource_path(
-    'www', app_sys('app/www')
-  )
+  add_resource_path('www', app_sys('app/www'))
   
-
   tags$head(
     favicon(),
     bundle_resources(
@@ -44,7 +36,6 @@ golem_add_external_resources <- function(){
     ),
     # Add here other external resources
     # for example, you can add shinyalert::useShinyalert() 
-    
   )
 }
 

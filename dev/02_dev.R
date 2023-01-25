@@ -19,8 +19,10 @@ usethis::use_package( "highcharter" )
 usethis::use_package( "dplyr" )
 usethis::use_package( "magrittr" )
 usethis::use_package( "xts" )
-usethis::use_package( "colourpicker" )
 usethis::use_package( "shinycssloaders" )
+usethis::use_package( "colourpicker" )
+usethis::use_package( "shiny" )
+usethis::use_package( "golem" )
 
 
 
@@ -42,7 +44,7 @@ usethis::use_package( "shinycssloaders" )
 
 ## Add internal datasets ----
 ## If you have data in your package
-usethis::use_data_raw( name = "my_dataset", open = FALSE ) 
+usethis::use_data_raw( name = "data1", open = FALSE ) 
 
 ## Tests ----
 ## Add one line by test you want to create
@@ -66,7 +68,7 @@ usethis::use_data_raw( name = "my_dataset", open = FALSE )
 ## service for your application
 ## 
 ## (You'll need GitHub there)
-# usethis::use_github()
+usethis::use_github()
 
 # GitHub Actions
 # usethis::use_github_action() 
