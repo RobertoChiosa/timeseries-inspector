@@ -14,7 +14,7 @@ The goal of is to provide an easy interface to explore timeseries. The
 inspector tool is embedded in the `TSinspector` package that can be
 downloaded and installed locally or accessible online on shinyapps.io.
 
-![](man/figures/screen.png)
+![](man/figures/screen1.png)
 
 ## Install and use as R package
 
@@ -39,7 +39,7 @@ In order to build the container image, you’ll need to use a `Dockerfile`. A Do
 no
 file extension. In this case it was automatically created from the R console by using the `golem` command:
 
-``` R
+``` r
 golem::add_dockerfile()
 ```
 
@@ -52,7 +52,7 @@ optimize the executed commands and increasing the readability.
 
 To build the image run the following command into the main folder of the application.
 
-``` bash
+``` docker
 docker build -t timeseries-inspector .
 ```
 
