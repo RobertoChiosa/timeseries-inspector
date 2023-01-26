@@ -80,7 +80,7 @@ download the image. Once the installation of the base image is done any further 
 
 Then run the application by starting the container.
 ``` bash
-docker run -p 80:80 timeseries-inspector:latest 
+docker run  --name TSinspector -p 80:80 timeseries-inspector:latest
 ```
 
 After a few seconds, open your web browser to `127.0.0.1:80`. You should see your app.

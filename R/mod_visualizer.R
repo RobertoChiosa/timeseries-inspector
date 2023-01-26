@@ -59,7 +59,8 @@ mod_visualizer_ui <- function(id){
 mod_visualizer_server <- function(id){
   moduleServer( id, function(input, output, session){
     
-
+    df <- TSinspector::power_data
+      
     ns <- session$ns
     
     xlabel       <- eventReactive(input$refresh, { input$xlabel },  ignoreNULL = F)
@@ -77,7 +78,7 @@ mod_visualizer_server <- function(id){
      
       
       highcharter::hchart(
-        data, 
+        df, 
         name = ifelse(series_name() == "", "Series",  series_name() ) ,
         color = input$color
       ) %>%

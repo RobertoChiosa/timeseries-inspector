@@ -3,11 +3,11 @@
 load("./data-raw/data_small.RData")
 
 library(dplyr)
-data <- df_univariate %>%
+power_data <- df_univariate %>%
   dplyr::mutate(timestamp = CET,
                 timeseries = Power_total) %>%
   dplyr::select(timestamp, timeseries)
   
-data <- xts::xts(data$timeseries, order.by = data$timestamp, tzone = "Europe/Rome")
+power_data <- xts::xts(power_data$timeseries, order.by = power_data$timestamp, tzone = "Europe/Rome")
 
-usethis::use_data(data, version = 3, overwrite = TRUE)
+usethis::use_data(power_data,overwrite = TRUE,internal = FALSE)
