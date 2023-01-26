@@ -45,28 +45,32 @@ golem::add_dockerfile()
 
 The Dockerfile is then added to the root folder of the application and contains all the instructions to build the
 container.
-Some minor changes has been done to the automatically generated file in order to speed up the building of the image,
-optimize the executed commands and increasing the readability.
+
+However a more reliable way to create the Dockerfile is by using the function 
+``` r
+golem::add_dockerfile_with_renv()
+```
+This allows to generate the Dockerfile by leveraging the renv package which allows a more reliable way to handle dependencies in the R environment and acts like the venv in python environments. 
 
 ### Build the container image.
 
 To build the image run the following command into the main folder of the application.
 
+
 ``` docker
-docker build -t timeseries-inspector .
+docker build -f Dockerfile --progress=plain -t timeseries-inspector .
 ```
 
 Troubleshooting on mac M1
 
 ``` bash
-docker build -t timeseries-inspector . --platform linux/x86_64
+docker build -f Dockerfile --progress=plain -t timeseries-inspector . --platform linux/x86_64
 ```
 
 The `-t` flag tags specifies a human-readable name for the final image. Since you named
 the image `timeseries-inspector`, you can refer to that image when you run a container.
 
-The `.` at the end of the docker build command tells Docker that it should look for the Dockerfile in the current
-directory.
+The `.` at the end of the docker build command tells Docker that it should look for the Dockerfile in the current directory.
 
 The first time you build the image Docker downloads a lot of layers because you instructed the builder that you
 wanted to start from the `rocker/verse:4.2.2` image. But, since you didn’t have that on your machine, Docker needed to
@@ -76,10 +80,10 @@ download the image. Once the installation of the base image is done any further 
 
 Then run the application by starting the container.
 ``` bash
-docker run -dp 3000:3000 timeseries-inspector
+docker run -p 80:80 timeseries-inspector:latest 
 ```
 
-After a few seconds, open your web browser to `http://localhost:3000`. You should see your app.
+After a few seconds, open your web browser to `127.0.0.1:80`. You should see your app.
 
 
 
