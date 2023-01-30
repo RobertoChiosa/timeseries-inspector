@@ -83,7 +83,7 @@ Then run the application by starting the container.
 docker run  --name TSinspector -p 80:80 timeseries-inspector:latest
 ```
 
-After a few seconds, open your web browser to `127.0.0.1:80`. You should see your app.
+After a few seconds, open your web browser to http://127.0.0.1/80. You should see your app.
 
 
 
