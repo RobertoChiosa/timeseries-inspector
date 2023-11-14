@@ -11,16 +11,14 @@ badge](https://img.shields.io/badge/Version-v0.1-%3CCOLOR%3E.svg)](https://shiel
 <!-- badges: end -->
 
 The goal of this repository is to demonstrate how a simple shiny app can be built and deployed. The application
-provides an easy interface to explore timeseries. The
-inspector tool is embedded in the `TSinspector` R package and can be used by locally install the package or by
-running a docker container.
+provides an easy interface to explore timeseries. The inspector tool is embedded in the `TSinspector` R package and can
+be used by locally install the package or by running a docker container.
 
 ![](man/figures/screen1.png)
 
 ## Install and use as R package
 
-You can install the development version from
-GitHub with the following command:
+You can install the development version from GitHub with the following command:
 
 ``` r
 # install.packages("devtools")
@@ -36,19 +34,17 @@ TSinspector::run_app()
 
 ## Install and use through docker container
 
-Another way to deploy the timeseries inspector App is to use Docker.
-In order to build the container image, you’ll need to use a Dockerfile. A Dockerfile is simply a text-based file with
-no file extension. In this case it was automatically created from the R console by using the following command from the
-R package `golem`:
+Another way to deploy the timeseries inspector App is to use Docker. In order to build the container image, you’ll need
+to use a `Dockerfile`. A Dockerfile is simply a text-based file with no file extension. In this case it was
+automatically created from the R console by using the following command from the R package `golem`:
+
 ``` r
 golem::add_dockerfile()
 ```
 
 The [Dockerfile](Dockerfile) is then added to the root folder of the application and contains all the instructions to
-build the
-container.
+build the container. However, a more reliable way to create the Dockerfile is by using the function
 
-However, a more reliable way to create the Dockerfile is by using the function
 ``` r
 golem::add_dockerfile_with_renv()
 ```
@@ -61,11 +57,11 @@ dependencies in the R environment and acts like the venv in python environments.
 
 To build the image run the following command into the main folder of the application.
 
-``` docker
+``` bash
 docker build -f Dockerfile --progress=plain -t timeseries-inspector .
 ```
 
-Troubleshooting on mac M1
+If you are usina a mac with M1 processo you should specify the building platform.
 
 ``` bash
 docker build -f Dockerfile --progress=plain -t timeseries-inspector . --platform linux/x86_64
@@ -76,7 +72,7 @@ The `-t` flag tags specifies a human-readable name for the final image. Since yo
 it should look for the Dockerfile in the current directory.
 
 The first time you build the image Docker downloads a lot of layers because you instructed the builder that you
-wanted to start from the `rocker/verse:4.2.2` image. But, since you didn’t have that on your machine, Docker needed to
+wanted to start from the `rocker/verse:4.2.2` image. But, since you did not have it on your machine, Docker needed to
 download the image. Once the installation of the base image is done any further build will be much faster.
 
 ### Run the container image.
@@ -87,7 +83,9 @@ Then run the application by starting the container.
 docker run  --name TSinspector -p 80:80 timeseries-inspector:latest
 ```
 
-After a few seconds, open your web browser to http://127.0.0.1/80. You should see your app.
+After a few seconds, open your web browser to http://127.0.0.1/80. You should see your app running.
+
+## Push the container image to Docker Registry
 
 ## Resources
 
