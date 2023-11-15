@@ -21,6 +21,11 @@ jobs:
     name: Build and Push
     runs-on: ubuntu-latest
     steps:
+      - steps:
+      - name: Set current date as env variable
+        run: echo "NOW=$(date +'%Y-%m-%dT%H:%M:%S')" >> $GITHUB_ENV
+      - name: Echo current date
+        run: echo $NOW
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v3
       - name: Set up Docker Buildx
@@ -35,7 +40,7 @@ jobs:
         uses: docker/build-push-action@v5
         with:
           push: true
-          tags: ${{ secrets.HARBOR_REGISTRY_URL }}/baeda/timeseries-inspector:${{date +%s}}.v1
+          tags: ${{ secrets.HARBOR_REGISTRY_URL }}/baeda/timeseries-inspector:$NOW
 
 #on:
 #  push:
