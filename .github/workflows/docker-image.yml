@@ -38,7 +38,7 @@ jobs:
         uses: docker/build-push-action@v5
         with:
           push: true
-          tags: ${{ secrets.HARBOR_REGISTRY_URL }}/baeda/timeseries-inspector:${{ github.event.repository.updated_at}}
+          tags: baeda/timeseries-inspector:${{ github.event.repository.updated_at}}
 
 #on:
 #  push:
