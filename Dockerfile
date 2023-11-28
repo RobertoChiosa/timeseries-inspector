@@ -1,4 +1,9 @@
 FROM rocker/verse:4.1.1
+# Set the used port, once deployed in CrownLabs this variable will be overrided with the value used by CrownLabs
+ENV CROWNLABS_LISTEN_PORT=80
+# Set the web-service basepath, once deployed in CrownLabs this variable will be overrided with the value used by CrownLabs
+ENV CROWNLABS_BASE_PATH=/basepath
+# Install R packages
 RUN apt-get update && apt-get install -y  git-core libcurl4-openssl-dev libgit2-dev libglpk-dev libgmp-dev libicu-dev libssl-dev libxml2-dev make pandoc zlib1g-dev && rm -rf /var/lib/apt/lists/*
 RUN mkdir -p /usr/local/lib/R/etc/ /usr/lib/R/etc/
 RUN echo "options(repos = c(CRAN = 'https://cran.rstudio.com/'), download.file.method = 'libcurl', Ncpus = 4)" | tee /usr/local/lib/R/etc/Rprofile.site | tee /usr/lib/R/etc/Rprofile.site
@@ -16,5 +21,9 @@ ADD . /build_zone
 WORKDIR /build_zone
 RUN R -e 'remotes::install_local(upgrade="never")'
 RUN rm -rf /build_zone
-EXPOSE 80
-CMD R -e "options('shiny.port'=80,shiny.host='0.0.0.0');TSinspector::run_app()"
+# Create a user with UID 1010
+RUN useradd -ms /bin/bash myuser
+# Use the previously created user to run the container
+USER myuser
+EXPOSE ${CROWNLABS_LISTEN_PORT}
+CMD R -e "options('shiny.port'=${CROWNLABS_LISTEN_PORT},shiny.host='0.0.0.0');TSinspector::run_app()"
