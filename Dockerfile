@@ -2,7 +2,7 @@ FROM rocker/verse:4.1.1
 # Set the used port, once deployed in CrownLabs this variable will be overrided with the value used by CrownLabs
 ENV CROWNLABS_LISTEN_PORT=80
 # Set the web-service basepath, once deployed in CrownLabs this variable will be overrided with the value used by CrownLabs
-ENV CROWNLABS_BASE_PATH=/basepath
+ENV CROWNLABS_BASE_PATH=/
 # Install R packages
 RUN apt-get update && apt-get install -y  git-core libcurl4-openssl-dev libgit2-dev libglpk-dev libgmp-dev libicu-dev libssl-dev libxml2-dev make pandoc zlib1g-dev && rm -rf /var/lib/apt/lists/*
 RUN mkdir -p /usr/local/lib/R/etc/ /usr/lib/R/etc/
@@ -22,7 +22,7 @@ WORKDIR /build_zone
 RUN R -e 'remotes::install_local(upgrade="never")'
 RUN rm -rf /build_zone
 # Create a user with UID 1010
-RUN useradd -ms /bin/bash myuser
+RUN useradd -m myuser -u 1010
 # Use the previously created user to run the container
 USER myuser
 EXPOSE ${CROWNLABS_LISTEN_PORT}
